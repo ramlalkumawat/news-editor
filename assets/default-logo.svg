@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 130" width="500" height="130">
+  <defs>
+    <linearGradient id="brandNavyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1642" />
+      <stop offset="100%" stop-color="#17237F" />
+    </linearGradient>
+    <linearGradient id="brandGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE066" />
+      <stop offset="50%" stop-color="#FFC400" />
+      <stop offset="100%" stop-color="#E0A800" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background Pill (optional, transparent by default) -->
+  <rect x="2" y="2" width="496" height="126" rx="16" fill="none" stroke="none" />
+
+  <!-- Emblem Icon on Left -->
+  <g transform="translate(15, 15)">
+    <!-- Outer Shield / Hexagon -->
+    <path d="M 50 0 L 95 25 L 95 75 L 50 100 L 5 75 L 5 25 Z" fill="url(#brandNavyGrad)" stroke="url(#brandGoldGrad)" stroke-width="4" filter="url(#shadow)"/>
+    
+    <!-- Inner Accent Fortress / Sun Motif -->
+    <circle cx="50" cy="45" r="24" fill="#0E1642" stroke="url(#brandGoldGrad)" stroke-width="2.5" />
+    
+    <!-- Golden Sun Rays / News Flash / Rajasthan Fortress crenellation -->
+    <path d="M 50 25 L 54 36 L 65 36 L 56 43 L 60 54 L 50 47 L 40 54 L 44 43 L 35 36 L 46 36 Z" fill="url(#brandGoldGrad)" />
+    
+    <!-- "LU" Monogram / Broadcast Wave -->
+    <path d="M 32 72 Q 50 63 68 72" stroke="url(#brandGoldGrad)" stroke-width="3" fill="none" stroke-linecap="round" />
+    <path d="M 38 78 Q 50 71 62 78" stroke="#FFFFFF" stroke-width="2.5" fill="none" stroke-linecap="round" />
+
+    <!-- Pulsing Live Dot -->
+    <circle cx="50" cy="87" r="4.5" fill="#EF4444" />
+  </g>
+
+  <!-- Typography: LOKUPDATE RAJASTHAN -->
+  <g transform="translate(130, 22)">
+    <!-- Main English Brand Name -->
+    <text x="0" y="42" font-family="'Poppins', 'Montserrat', 'Inter', sans-serif" font-weight="900" font-size="40" letter-spacing="1.5" fill="#17237F">
+      LOK<tspan fill="#FFC400">UPDATE</tspan>
+    </text>
+
+    <!-- Subtitle: RAJASTHAN & Devanagari Script -->
+    <text x="2" y="70" font-family="'Poppins', 'Rajdhani', sans-serif" font-weight="800" font-size="19" letter-spacing="6" fill="#0E1642">
+      RAJASTHAN
+    </text>
+
+    <!-- Hindi Tagline / News Identity Badge -->
+    <rect x="185" y="54" width="168" height="22" rx="4" fill="#FFC400" />
+    <text x="194" y="70" font-family="'Noto Sans Devanagari', 'Poppins', sans-serif" font-weight="800" font-size="12" fill="#0E1642" letter-spacing="0.5">
+      लोकअपडेट राजस्थान
+    </text>
+
+    <!-- Tagline: निष्पक्ष खबर, सबसे तेज -->
+    <text x="3" y="92" font-family="'Noto Sans Devanagari', 'Inter', sans-serif" font-weight="600" font-size="11" fill="#64748B" letter-spacing="1">
+      सच की आवाज़ • प्रदेश का भरोसेमंद डिजिटल न्यूज़ नेटवर्क
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LokUpdate Rajasthan - News Creative Studio</title>
+  <meta name="description" content="Official Instagram News Poster Designing Studio for LokUpdate Rajasthan. Create Breaking News, Rajasthan News, Jaipur News, and Custom News Templates.">
+
+  <!-- Favicon using official brand logo -->
+  <link rel="icon" type="image/png" href="assets/lokupdate-logo.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+  <div id="app-root">
+    
+    <!-- ======================================================================
+         1. MAIN NAVIGATION SIDEBAR
+         ====================================================================== -->
+    <aside class="app-nav">
+      <div class="nav-brand">
+        <img src="assets/lokupdate-logo-transparent.png" alt="LokUpdate Rajasthan" class="brand-logo-img">
+        <div class="brand-title-wrap">
+          <div class="brand-title-main">LOK<span>UPDATE</span></div>
+          <div class="brand-tagline-sub">STUDIO RAJASTHAN</div>
+        </div>
+      </div>
+
+      <ul class="nav-list">
+        <li>
+          <button class="nav-item-btn active" data-view="editor" id="navBtnEditor">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span>News Editor</span>
+            <span class="live-indicator" style="margin-left:auto;"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-view="templates" id="navBtnTemplates">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            <span>My Templates</span>
+            <span class="nav-badge">7+</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-view="designs" id="navBtnDesigns">
+            <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            <span>Saved Designs</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-view="brand" id="navBtnBrand">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            <span>Brand Settings</span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-item-btn" data-view="history" id="navBtnHistory">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Export History</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="nav-footer-card">
+        <div class="title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          LokUpdate Studio
+        </div>
+        <div class="desc">
+          Official Instagram News Graphic Creator • HD 1080p Resolution
+        </div>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         2. MAIN VIEW CONTAINER
+         ====================================================================== -->
+    <main class="app-main">
+      
+      <!-- VIEW 1: NEWS POST EDITOR (ACTIVE DEFAULT) -->
+      <section class="editor-container dashboard-view active" id="view-editor" style="display:flex; padding:0;">
+        
+        <!-- TOP TOOLBAR -->
+        <header class="editor-topbar">
+          <div class="topbar-left">
+            <input type="text" id="projectTitleInput" class="project-title-input" value="LokUpdate Rajasthan Post" title="Click to rename design">
+            
+            <div style="display:flex; gap:4px; margin-left:8px;">
+              <button class="btn-icon btn-sm btn-secondary" id="btnUndo" title="Undo (Ctrl+Z)" disabled>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"/></svg>
+              </button>
+              <button class="btn-icon btn-sm btn-secondary" id="btnRedo" title="Redo (Ctrl+Y)" disabled>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 7v6h-6"/><path d="M3 17a9 9 0 019-9 9 9 0 016 2.3l3 2.7"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="topbar-center">
+            <!-- Canvas Dimension Preset Selector -->
+            <div class="canvas-size-selector">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+              <select id="canvasSizeSelect" class="form-control" style="padding:4px 28px 4px 8px; font-size:12.5px; border:none; background:transparent; font-weight:700;">
+                <option value="square">Instagram Square (1080 × 1080) 1:1</option>
+                <option value="portrait">Instagram Portrait (1080 × 1350) 4:5</option>
+                <option value="story">Instagram Story / Reel (1080 × 1920) 9:16</option>
+                <option value="custom">Custom Size...</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <button class="btn btn-secondary btn-sm" id="btnSaveAsTemplate">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span>Save As Template</span>
+            </button>
+            <button class="btn btn-primary btn-sm" id="btnSaveDesign">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              <span>Save</span>
+            </button>
+            <button class="btn btn-yellow btn-sm" id="btnDownloadModal">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Poster</span>
+            </button>
+          </div>
+        </header>
+
+        <!-- THREE-COLUMN WORKSPACE -->
+        <div class="editor-workspace">
+          
+          <!-- LEFT SIDEBAR ICON RIBBON -->
+          <nav class="editor-left-nav">
+            <button class="editor-nav-tab active" data-tab="templates" title="Templates">
+              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              <span>Templates</span>
+            </button>
+            <button class="editor-nav-tab" data-tab="content" title="News Content Form">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <span>News Text</span>
+            </button>
+            <button class="editor-nav-tab" data-tab="text" title="Typography">
+              <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+              <span>Text</span>
+            </button>
+            <button class="editor-nav-tab" data-tab="uploads" title="Upload Photos">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span>Uploads</span>
+            </button>
+            <button class="editor-nav-tab" data-tab="elements" title="Shapes & Badges">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <span>Elements</span>
+            </button>
+            <button class="editor-nav-tab" data-tab="background" title="Canvas Background">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 2v20"/><path d="M2 12h20"/></svg>
+              <span>Backdrop</span>
+            </button>
+            <button class="editor-nav-tab" data-tab="brand" title="Brand Kit">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span>Brand Kit</span>
+            </button>
+          </nav>
+
+          <!-- LEFT DRAWER SLIDEOUT PANEL -->
+          <div class="editor-drawer" id="editorDrawer">
+            <div class="drawer-header">
+              <div class="drawer-title" id="drawerTitleText">Templates</div>
+              <button class="btn-icon btn-sm btn-ghost" id="btnCloseDrawer" title="Collapse Drawer">&times;</button>
+            </div>
+
+            <div class="drawer-content">
+              
+              <!-- PANE 1: TEMPLATES -->
+              <div class="drawer-tab-pane active" id="tab-templates">
+                <p style="font-size:12px; color:var(--text-muted);">क्लिक करके प्रोफेशनल न्यूज़ लेआउट चुनें:</p>
+                <div id="drawerTemplatesList" style="display:flex; flex-direction:column; gap:12px;"></div>
+              </div>
+
+              <!-- PANE 2: NEWS CONTENT AUTO-FILL FORM -->
+              <div class="drawer-tab-pane" id="tab-content">
+                <div style="display:flex; gap:6px;">
+                  <button class="btn btn-secondary btn-sm" id="btnLoadSampleBreaking" style="flex:1; font-size:11px;">सैंपल बड़ी खबर</button>
+                  <button class="btn btn-secondary btn-sm" id="btnLoadSampleRajasthan" style="flex:1; font-size:11px;">सैंपल राजस्थान</button>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">News Category (कैटेगरी)</label>
+                  <select id="newsCategorySelect" class="form-control"></select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">News Headline (मुख्य शीर्षक)</label>
+                  <textarea id="newsHeadlineInput" class="form-control" rows="3" placeholder="यहाँ मुख्य समाचार शीर्षक लिखें (हिंदी या अंग्रेज़ी)..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">News Description / Bullets (विवरण)</label>
+                  <textarea id="newsDescriptionInput" class="form-control" rows="3" placeholder="• समाचार के मुख्य बिंदु या उप-शीर्षक लिखें..."></textarea>
+                </div>
+
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+                  <div class="form-group">
+                    <label class="form-label">Location (स्थान)</label>
+                    <input type="text" id="newsLocationInput" class="form-control" value="जयपुर">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Time (समय)</label>
+                    <input type="text" id="newsTimeInput" class="form-control" value="01:30 PM">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                    <label class="form-label" style="margin:0;">Date (दिनांक)</label>
+                    <button class="btn-ghost btn-sm" id="btnSetCurrentDateTime" style="font-size:11px; padding:2px 6px; color:var(--brand-navy); font-weight:700;">+ आज की तारीख</button>
+                  </div>
+                  <input type="text" id="newsDateInput" class="form-control" value="02 अक्टूबर 2026">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Source / Bureau (स्रोत)</label>
+                  <input type="text" id="newsSourceInput" class="form-control" value="विशेष संवाददाता / LokUpdate">
+                </div>
+
+                <label class="switch-label" style="margin-top:4px;">
+                  <span style="font-size:12.5px; font-weight:600; color:var(--text-secondary);">Breaking News Live Ticker</span>
+                  <div class="switch">
+                    <input type="checkbox" id="newsBreakingCheck" checked>
+                    <span class="slider"></span>
+                  </div>
+                </label>
+
+                <button class="btn btn-yellow" id="btnApplyNewsToCanvas" style="width:100%; margin-top:8px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Apply News to Canvas</span>
+                </button>
+              </div>
+
+              <!-- PANE 3: TEXT -->
+              <div class="drawer-tab-pane" id="tab-text">
+                <p style="font-size:12px; color:var(--text-muted);">कैनवास पर नया टेक्स्ट बॉक्स जोड़ें:</p>
+                <button class="text-add-btn headline" id="btnAddHeadline">
+                  <span>बड़ी खबर शीर्षक (Headline)</span>
+                </button>
+                <button class="text-add-btn subheading" id="btnAddSubheading">
+                  <span>उप-शीर्षक (Subheading)</span>
+                </button>
+                <button class="text-add-btn body-text" id="btnAddBodyText">
+                  <span>• मुख्य बिंदु / विवरण (Body Bullet)</span>
+                </button>
+                <button class="text-add-btn breaking-badge" id="btnAddBreakingBadge">
+                  <span class="live-indicator"></span>
+                  <span>BREAKING NEWS / बड़ी खबर</span>
+                </button>
+              </div>
+
+              <!-- PANE 4: UPLOADS -->
+              <div class="drawer-tab-pane" id="tab-uploads">
+                <input type="file" id="photoFileInput" accept="image/png, image/jpeg, image/jpg, image/webp" style="display:none;">
+                <div class="upload-dropzone" id="uploadDropzone">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <p><strong>कंप्यूटर से फोटो अपलोड करें</strong></p>
+                  <span>या फ़ाइल यहाँ ड्रैग & ड्रॉप करें (JPG, PNG, WEBP)</span>
+                </div>
+
+                <div style="font-size:12px; font-weight:700; color:var(--text-secondary); margin-top:10px;">
+                  आपकी अपलोड की गई फोटो:
+                </div>
+                <div class="uploads-gallery-grid" id="uploadsGallery"></div>
+              </div>
+
+              <!-- PANE 5: ELEMENTS & SHAPES -->
+              <div class="drawer-tab-pane" id="tab-elements">
+                <p style="font-size:12px; color:var(--text-muted);">आकार और डिज़ाइन घटक:</p>
+                <div class="elements-grid">
+                  <div class="element-add-card" id="btnAddRectShape">
+                    <div style="width:24px; height:18px; background:var(--brand-navy); border-radius:3px;"></div>
+                    <span>Rectangle</span>
+                  </div>
+                  <div class="element-add-card" id="btnAddCircleShape">
+                    <div style="width:22px; height:22px; background:var(--brand-yellow); border-radius:50%;"></div>
+                    <span>Circle</span>
+                  </div>
+                  <div class="element-add-card" id="btnAddPillShape">
+                    <div style="width:28px; height:14px; background:var(--brand-navy); border-radius:10px; border:1px solid var(--brand-yellow);"></div>
+                    <span>Pill Tag</span>
+                  </div>
+                  <div class="element-add-card" id="btnAddDividerLine">
+                    <div style="width:28px; height:3px; background:var(--brand-yellow);"></div>
+                    <span>Divider</span>
+                  </div>
+                  <div class="element-add-card" id="btnAddGradientOverlay">
+                    <div style="width:24px; height:24px; background:linear-gradient(to bottom, transparent, #0B1340); border:1px solid #CBD5E1;"></div>
+                    <span>Vignette</span>
+                  </div>
+                  <div class="element-add-card" id="btnInsertBrandLogo">
+                    <img src="assets/lokupdate-logo-transparent.png" style="max-height:18px; object-fit:contain;" />
+                    <span>Brand Logo</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PANE 6: BACKGROUND -->
+              <div class="drawer-tab-pane" id="tab-background">
+                <p style="font-size:12px; color:var(--text-muted);">कैनवास पृष्ठभूमि रंग (Canvas Backdrop):</p>
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;">
+                  <button class="btn btn-secondary bg-color-preset" data-color="#0B1340" style="background:#0B1340; color:#fff; border:none; height:44px;">Navy Dark</button>
+                  <button class="btn btn-secondary bg-color-preset" data-color="#17237F" style="background:#17237F; color:#fff; border:none; height:44px;">Brand Navy</button>
+                  <button class="btn btn-secondary bg-color-preset" data-color="#FFFFFF" style="background:#FFFFFF; color:#0B1340; border:1px solid #CBD5E1; height:44px;">Pure White</button>
+                  <button class="btn btn-secondary bg-color-preset" data-color="#F8FAFC" style="background:#F8FAFC; color:#0B1340; border:1px solid #CBD5E1; height:44px;">Off-White</button>
+                  <button class="btn btn-secondary bg-color-preset" data-color="#FFC400" style="background:#FFC400; color:#0B1340; border:none; height:44px;">Brand Gold</button>
+                  <button class="btn btn-secondary bg-color-preset" data-color="#0F172A" style="background:#0F172A; color:#fff; border:none; height:44px;">Slate Black</button>
+                </div>
+
+                <div class="form-group" style="margin-top:14px;">
+                  <label class="form-label">कस्टम रंग चुनें</label>
+                  <input type="color" id="customBgColorPicker" value="#0B1340" class="form-control" style="height:40px; padding:2px; cursor:pointer;">
+                </div>
+              </div>
+
+              <!-- PANE 7: BRAND KIT -->
+              <div class="drawer-tab-pane" id="tab-brand">
+                <div style="text-align:center; padding:12px; background:var(--bg-surface-alt); border-radius:var(--radius-lg); border:1px solid var(--border-light);">
+                  <img src="assets/lokupdate-logo-transparent.png" alt="LokUpdate Logo" style="max-height:60px; margin:0 auto 8px; object-fit:contain;">
+                  <div style="font-size:13px; font-weight:800; color:var(--brand-navy-dark);">LokUpdate Rajasthan</div>
+                  <div style="font-size:11px; color:var(--text-muted);">आधिकारिक लोगो एवं ब्रांडिंग</div>
+                </div>
+
+                <button class="btn btn-primary" id="btnInsertBrandLogoKit" onclick="window.activeBrandManager.insertLogoIntoCanvas()" style="width:100%;">
+                  <span>+ कैनवास पर लोगो जोड़ें</span>
+                </button>
+                
+                <button class="btn btn-secondary" onclick="window.switchViewDirect('brand')" style="width:100%;">
+                  <span>ब्रांड सेटिंग्स खोलें (Manage Logo)</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- CENTER CANVAS VIEWPORT -->
+          <div class="canvas-viewport" id="canvasViewport">
+            <div class="canvas-artboard-wrapper" id="canvasArtboardWrapper">
+              <canvas id="newsCanvas" width="1080" height="1080"></canvas>
+            </div>
+
+            <!-- FLOATING BOTTOM CANVAS CONTROLS -->
+            <div class="canvas-floating-toolbar">
+              <button class="btn-icon btn-sm btn-ghost" id="btnZoomOut" title="Zoom Out" style="color:#fff;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              </button>
+              <span class="zoom-indicator-text" id="zoomPercentageText">100%</span>
+              <button class="btn-icon btn-sm btn-ghost" id="btnZoomIn" title="Zoom In" style="color:#fff;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              </button>
+              <button class="btn-icon btn-sm btn-ghost" id="btnZoomFit" title="Fit to Screen" style="color:#fff;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
+              <div class="canvas-dimension-badge" id="canvasDimensionText">1080 × 1080 px</div>
+            </div>
+          </div>
+
+          <!-- RIGHT INSPECTOR SIDEBAR -->
+          <aside class="editor-inspector" id="editorInspector">
+            
+            <!-- EMPTY SELECTION STATE -->
+            <div id="inspectorNoSelection" style="padding:40px 20px; text-align:center; color:var(--text-muted);">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:12px; stroke:var(--text-light);"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <p style="font-size:13px; font-weight:600;">कोई एलिमेंट चयनित नहीं है</p>
+              <p style="font-size:11.5px; margin-top:4px;">कैनवास पर किसी भी टेक्स्ट, फोटो या आकार पर क्लिक करके प्रॉपर्टीज एडिट करें।</p>
+            </div>
+
+            <!-- TEXT PROPERTIES PANEL -->
+            <div class="inspector-section" id="inspectorTextProperties" style="display:none;">
+              <div class="inspector-section-header">Typography (टाइपोग्राफी)</div>
+
+              <div class="form-group">
+                <label class="form-label">Font Family (फॉन्ट)</label>
+                <select id="propFontFamily" class="form-control font-preview-select">
+                  <optgroup label="Hindi Headline & Display">
+                    <option value="Rozha One">Rozha One (हिंदी बड़ी खबर स्पेशल)</option>
+                    <option value="Noto Sans Devanagari">Noto Sans Devanagari (स्पष्ट हिंदी)</option>
+                    <option value="Yatra One">Yatra One (बोल्ड देवनागरी)</option>
+                    <option value="Mukta">Mukta (आधुनिक हिंदी)</option>
+                    <option value="Hind">Hind (न्यूज़ बुलेटिन)</option>
+                  </optgroup>
+                  <optgroup label="Modern Editorial Sans">
+                    <option value="Poppins">Poppins (पॉपिन्स बोल्ड)</option>
+                    <option value="Rajdhani">Rajdhani (कंडेंस्ड हाई-टेक)</option>
+                    <option value="Bebas Neue">Bebas Neue (इम्पैक्ट ऑल कैप्स)</option>
+                    <option value="Inter">Inter (क्लीन इंटर)</option>
+                    <option value="Montserrat">Montserrat (मॉडर्न)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Font Size</span>
+                  <span class="range-val" id="propFontSizeVal">38px</span>
+                </label>
+                <div class="form-range-wrap">
+                  <input type="range" id="propFontSize" class="form-range" min="14" max="110" value="38">
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+                <div class="form-group">
+                  <label class="form-label">Font Weight</label>
+                  <select id="propFontWeight" class="form-control">
+                    <option value="400">Regular (400)</option>
+                    <option value="600">Semi Bold (600)</option>
+                    <option value="700">Bold (700)</option>
+                    <option value="800">Extra Bold (800)</option>
+                    <option value="900">Black (900)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Text Color</label>
+                  <input type="color" id="propTextColor" class="form-control" value="#FFFFFF" style="height:36px; padding:2px; cursor:pointer;">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Alignment</label>
+                <div class="segmented-control">
+                  <button class="segmented-btn btn-align-text" data-align="left">Left</button>
+                  <button class="segmented-btn btn-align-text" data-align="center">Center</button>
+                  <button class="segmented-btn btn-align-text" data-align="right">Right</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Text Content</label>
+                <textarea id="propTextContent" class="form-control" rows="3"></textarea>
+              </div>
+            </div>
+
+            <!-- IMAGE PROPERTIES PANEL -->
+            <div class="inspector-section" id="inspectorImageProperties" style="display:none;">
+              <div class="inspector-section-header">Image Settings (फोटो सेटिंग्स)</div>
+
+              <div class="form-group">
+                <label class="form-label">Fit Mode (फ़्रेम फ़िट)</label>
+                <select id="propImageFit" class="form-control">
+                  <option value="cover">Cover (फ्रेम पूरा भरें)</option>
+                  <option value="contain">Contain (पूरी फोटो दिखाएं)</option>
+                  <option value="fill">Stretch / Fill</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Corner Radius (कोने गोल करें)</label>
+                <input type="range" id="propImageRadius" class="form-range" min="0" max="60" value="0">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Border Width (बॉर्डर मोटाई)</label>
+                <input type="range" id="propImageBorder" class="form-range" min="0" max="16" value="0">
+              </div>
+
+              <button class="btn btn-secondary btn-sm" id="btnReplaceImage" style="width:100%; margin-top:4px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>Replace Photo</span>
+              </button>
+            </div>
+
+            <!-- SHAPE PROPERTIES PANEL -->
+            <div class="inspector-section" id="inspectorShapeProperties" style="display:none;">
+              <div class="inspector-section-header">Shape Styles</div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+                <div class="form-group">
+                  <label class="form-label">Fill Color</label>
+                  <input type="color" id="propShapeFill" class="form-control" value="#17237F" style="height:36px; padding:2px; cursor:pointer;">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Stroke Color</label>
+                  <input type="color" id="propShapeStroke" class="form-control" value="#FFC400" style="height:36px; padding:2px; cursor:pointer;">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Border Radius</label>
+                <input type="range" id="propShapeRadius" class="form-range" min="0" max="80" value="0">
+              </div>
+            </div>
+
+            <!-- COMMON TRANSFORM & POSITION PROPERTIES -->
+            <div class="inspector-section" id="inspectorCommonProperties" style="display:none;">
+              <div class="inspector-section-header">Position & Sizing</div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+                <div class="form-group">
+                  <label class="form-label">X Position</label>
+                  <input type="number" id="propX" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Y Position</label>
+                  <input type="number" id="propY" class="form-control" readonly>
+                </div>
+              </div>
+
+              <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px;">
+                <div class="form-group">
+                  <label class="form-label">Width</label>
+                  <input type="number" id="propW" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Height</label>
+                  <input type="number" id="propH" class="form-control" readonly>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Opacity</span>
+                  <span class="range-val" id="propOpacityVal">100%</span>
+                </label>
+                <div class="form-range-wrap">
+                  <input type="range" id="propOpacity" class="form-range" min="0" max="100" value="100">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Align to Canvas</label>
+                <div class="align-button-row">
+                  <button class="btn-canvas-align" data-align="left" title="Align Left">
+                    <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="3"/><rect x="8" y="7" width="12" height="10" rx="1"/></svg>
+                  </button>
+                  <button class="btn-canvas-align" data-align="center" title="Align Center">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="21" x2="12" y2="3"/><rect x="6" y="7" width="12" height="10" rx="1"/></svg>
+                  </button>
+                  <button class="btn-canvas-align" data-align="right" title="Align Right">
+                    <svg viewBox="0 0 24 24"><line x1="20" y1="21" x2="20" y2="3"/><rect x="4" y="7" width="12" height="10" rx="1"/></svg>
+                  </button>
+                  <button class="btn-canvas-align" data-align="top" title="Align Top">
+                    <svg viewBox="0 0 24 24"><line x1="3" y1="4" x2="21" y2="4"/><rect x="7" y="8" width="10" height="12" rx="1"/></svg>
+                  </button>
+                  <button class="btn-canvas-align" data-align="middle" title="Align Middle">
+                    <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><rect x="7" y="6" width="10" height="12" rx="1"/></svg>
+                  </button>
+                  <button class="btn-canvas-align" data-align="bottom" title="Align Bottom">
+                    <svg viewBox="0 0 24 24"><line x1="3" y1="20" x2="21" y2="20"/><rect x="7" y="4" width="10" height="12" rx="1"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Layer Order (लेयर क्रम)</label>
+                <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:4px;">
+                  <button class="btn btn-secondary btn-sm" id="btnLayerFront" title="Bring to Front">⬆ Front</button>
+                  <button class="btn btn-secondary btn-sm" id="btnLayerForward" title="Bring Forward">▲ Up</button>
+                  <button class="btn btn-secondary btn-sm" id="btnLayerBackward" title="Send Backward">▼ Down</button>
+                  <button class="btn btn-secondary btn-sm" id="btnLayerBack" title="Send to Back">⬇ Back</button>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:8px; margin-top:6px;">
+                <button class="btn btn-secondary btn-sm" id="btnDuplicateSelected" style="flex:1;">
+                  📋 डुप्लिकेट
+                </button>
+                <button class="btn btn-danger btn-sm" id="btnDeleteSelected" style="flex:1;">
+                  🗑️ डिलीट
+                </button>
+              </div>
+            </div>
+
+            <!-- LAYERS LIST -->
+            <div class="inspector-section">
+              <div class="inspector-section-header">
+                <span>Layers (लेयर्स)</span>
+              </div>
+              <div class="layer-list" id="inspectorLayersList"></div>
+            </div>
+
+          </aside>
+
+        </div>
+
+      </section>
+
+      <!-- VIEW 2: MY TEMPLATES -->
+      <section class="dashboard-view" id="view-templates">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              News Templates Library
+            </h1>
+            <p>प्रोफेशनल Instagram न्यूज़ टेम्पलेट्स - ब्रेकिंग न्यूज़, राजस्थान न्यूज़, जयपुर, राजनीति और खेल</p>
+          </div>
+          <button class="btn btn-primary" onclick="window.switchViewDirect('editor')">
+            + क्रिएटिव एडिटर खोलें
+          </button>
+        </div>
+
+        <div class="template-grid" id="templatesViewGrid"></div>
+      </section>
+
+      <!-- VIEW 3: SAVED DESIGNS -->
+      <section class="dashboard-view" id="view-designs">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+              Saved Designs
+            </h1>
+            <p>आपके द्वारा तैयार और सुरक्षित किए गए सभी न्यूज़ पोस्टर्स</p>
+          </div>
+          <button class="btn btn-primary" onclick="window.switchViewDirect('editor')">
+            + नया पोस्टर बनाएं
+          </button>
+        </div>
+
+        <div class="template-grid" id="savedDesignsGrid"></div>
+      </section>
+
+      <!-- VIEW 4: BRAND SETTINGS -->
+      <section class="dashboard-view" id="view-brand">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+              Brand Identity & Settings
+            </h1>
+            <p>LokUpdate Rajasthan का ऑफिशियल लोगो, ब्रांड कलर्स और सोशल हैंडल्स कॉन्फ़िगर करें</p>
+          </div>
+          <button class="btn btn-primary" id="btnSaveBrandSettings">
+            सेटिंग्स सुरक्षित करें
+          </button>
+        </div>
+
+        <div class="settings-grid">
+          <!-- Logo Card -->
+          <div class="settings-card">
+            <div class="settings-card-title">Official Brand Logo (आधिकारिक लोगो)</div>
+            <div class="logo-preview-container">
+              <img id="settingsLogoPreview" src="assets/lokupdate-logo-transparent.png" alt="LokUpdate Logo">
+            </div>
+
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <input type="file" id="brandLogoFileInput" accept="image/png, image/jpeg, image/webp, image/svg+xml" style="display:none;">
+              <button class="btn btn-secondary" onclick="document.getElementById('brandLogoFileInput').click()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                नया लोगो अपलोड करें
+              </button>
+              <button class="btn btn-ghost btn-sm" id="btnResetDefaultLogo" style="color:var(--text-muted);">
+                ऑफिशियल डिफ़ॉल्ट लोगो रीसेट करें
+              </button>
+            </div>
+
+            <div class="form-group" style="margin-top:10px;">
+              <label class="switch-label">
+                <span style="font-weight:600; font-size:13px;">Enable Logo on Posters</span>
+                <div class="switch">
+                  <input type="checkbox" id="brandToggleLogo" checked>
+                  <span class="slider"></span>
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="switch-label">
+                <span style="font-weight:600; font-size:13px;">Enable Brand Footer Bar</span>
+                <div class="switch">
+                  <input type="checkbox" id="brandToggleFooter" checked>
+                  <span class="slider"></span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Identity Details Card -->
+          <div class="settings-card">
+            <div class="settings-card-title">Brand Info & Colors</div>
+
+            <div class="form-group">
+              <label class="form-label">Brand Name (अंग्रेज़ी)</label>
+              <input type="text" id="brandPageNameInput" class="form-control" value="LokUpdate Rajasthan">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Social Media Handle</label>
+              <input type="text" id="brandHandleInput" class="form-control" value="@lokupdaterajasthan">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Official Tagline (टैगलाइन)</label>
+              <input type="text" id="brandTaglineInput" class="form-control" value="सच की आवाज़ • प्रदेश का भरोसेमंद डिजिटल न्यूज़ नेटवर्क">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Official Brand Color Palette</label>
+              <div class="brand-color-swatches-grid">
+                
+                <div class="brand-color-card">
+                  <div class="brand-color-preview" style="background:#17237F;"></div>
+                  <div class="brand-color-name">Navy Blue</div>
+                  <div class="brand-color-hex" id="brandNavyHex">#17237F</div>
+                  <input type="color" id="pickerBrandNavy" value="#17237F" style="margin-top:4px; height:28px; cursor:pointer;">
+                </div>
+
+                <div class="brand-color-card">
+                  <div class="brand-color-preview" style="background:#FFC400;"></div>
+                  <div class="brand-color-name">Yellow Gold</div>
+                  <div class="brand-color-hex" id="brandYellowHex">#FFC400</div>
+                  <input type="color" id="pickerBrandYellow" value="#FFC400" style="margin-top:4px; height:28px; cursor:pointer;">
+                </div>
+
+                <div class="brand-color-card">
+                  <div class="brand-color-preview" style="background:#FFFFFF; border:1px solid #CBD5E1;"></div>
+                  <div class="brand-color-name">Pure White</div>
+                  <div class="brand-color-hex">#FFFFFF</div>
+                  <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Standard Text</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 5: EXPORT HISTORY -->
+      <section class="dashboard-view" id="view-history">
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Export History
+            </h1>
+            <p>हाल ही में डाउनलोड किए गए सभी न्यूज़ पोस्टर्स की सूची</p>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnClearExportHistory">
+            🗑️ हिस्ट्री साफ़ करें
+          </button>
+        </div>
+
+        <div class="history-table-wrap">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>प्रिव्यू</th>
+                <th>फ़ाइल नाम</th>
+                <th>फॉर्मेट</th>
+                <th>साइज़</th>
+                <th>दिनांक</th>
+                <th>एक्शन</th>
+              </tr>
+            </thead>
+            <tbody id="exportHistoryTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ======================================================================
+         3. MODALS & POPUPS
+         ====================================================================== -->
+    
+    <!-- EXPORT & DOWNLOAD MODAL -->
+    <div class="modal-overlay" id="exportModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand-navy)" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download High-Resolution News Poster
+          </div>
+          <button class="btn-icon btn-sm btn-ghost" onclick="window.closeExportModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="form-label">Export Format (फ़ाइल का प्रकार)</label>
+            <select id="exportFormatSelect" class="form-control">
+              <option value="png">PNG (Lossless - सर्वश्रेष्ठ तीखे टेक्स्ट और एचडी क्वालिटी के लिए)</option>
+              <option value="jpg">JPG (Instagram के लिए ऑप्टिमाइज़्ड)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Quality Level (गुणवत्ता)</label>
+            <select id="exportQualitySelect" class="form-control">
+              <option value="1.0">Ultra High Quality 100% (Recommended)</option>
+              <option value="0.92">Standard Quality 92%</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">File Name (फ़ाइल का नाम)</label>
+            <input type="text" id="exportFilenameInput" class="form-control" value="LokUpdate_Rajasthan_Post">
+          </div>
+
+          <div style="background:var(--brand-navy-subtle); padding:12px 16px; border-radius:var(--radius-md); font-size:12px; color:var(--brand-navy-dark); line-height:1.5;">
+            💡 <strong>नोट:</strong> डाउनलोड की गई इमेज में केवल न्यूज़ पोस्टर होगा, कोई एडिटर इंटरफ़ेस या बाउंडिंग बॉक्स शामिल नहीं होगा। फ़ोटो और हिंदी फॉन्ट्स पूर्ण 1080p रिज़ॉल्यूशन में रेंडर होंगे।
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="window.closeExportModal()">रद्द करें</button>
+          <button class="btn btn-yellow" id="btnConfirmExport">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>डाउनलोड शुरू करें</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CUSTOM SIZE MODAL -->
+    <div class="modal-overlay" id="customSizeModal">
+      <div class="modal-card" style="max-width:440px;">
+        <div class="modal-header">
+          <div class="modal-title">कस्टम कैनवास आकार (Custom Canvas Size)</div>
+          <button class="btn-icon btn-sm btn-ghost" onclick="window.closeCustomSizeModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+            <div class="form-group">
+              <label class="form-label">Width (चौड़ाई px)</label>
+              <input type="number" id="customWidthInput" class="form-control" value="1080" min="200" max="4000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Height (ऊंचाई px)</label>
+              <input type="number" id="customHeightInput" class="form-control" value="1080" min="200" max="4000">
+            </div>
+          </div>
+          <p style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+            नया आकार सेट करने पर कैनवास स्वचालित रूप से समायोजित हो जाएगा।
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="window.closeCustomSizeModal()">रद्द करें</button>
+          <button class="btn btn-primary" id="btnApplyCustomSize">आकार लागू करें</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toast-container"></div>
+
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/elements.js"></script>
+  <script src="js/canvas-engine.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/brand-manager.js"></script>
+  <script src="js/news-content.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
